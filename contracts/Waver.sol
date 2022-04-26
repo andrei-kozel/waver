@@ -54,6 +54,11 @@ contract Waver is Ownable {
         return waves;
     }
 
+    function fetchWave(string memory _hash) public view returns (Wave memory) {
+        Wave storage wave = hashToWave[_hash];
+        return wave;
+    }
+
     // TODO
     function like() public {}
 

@@ -21,4 +21,15 @@ describe("Waver contract tests:", () => {
     waves = await waver.fetchWaves();
     expect(waves.length).to.equal(2);
   });
+
+  it("Should return wave by hash:", async () => {
+    const Waver = await ethers.getContractFactory("Waver");
+    const waver = await Waver.deploy();
+    await waver.deployed();
+    await waver.createWave("0x123abc123abc");
+
+    const wave = await waver.fetchWave("0x123abc123abc");
+    expect(wave).exist;
+    expect(wave.id).to.equal(1);
+  });
 });
