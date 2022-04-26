@@ -9,6 +9,7 @@ contract Waver is Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _waveIds;
     uint256 public bank = 0 ether;
+    address public tokenAddress;
 
     struct Wave {
         uint256 id;
@@ -26,6 +27,10 @@ contract Waver is Ownable {
     event WaveUnliked(uint256 id, uint256 likes, address author);
 
     constructor() {}
+
+    function setTokenAddress(address _tokenAddress) public onlyOwner {
+        tokenAddress = _tokenAddress;
+    }
 
     // create a new wave
     function createWave(string memory _contentHash) public {
