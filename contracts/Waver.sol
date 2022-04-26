@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Waver is Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _waveIds;
+    uint256 public bank = 0 ether;
 
     struct Wave {
         uint256 id;
@@ -65,8 +66,7 @@ contract Waver is Ownable {
     // TODO
     function unlike() public {}
 
-    // TODO
-    function deposit() public payable {
-        console.log("deposit");
+    function deposit() external payable {
+        bank += msg.value;
     }
 }
