@@ -34,4 +34,22 @@ describe("Token contract: ", async () => {
     await token.requestTokens(addr1.address, 1000);
     expect(await token.balanceOf(addr1.address)).to.equal(1000);
   });
+
+  it("Should throw an error if minted more then 1 time", async () => {
+    const [owner, addr1] = await ethers.getSigners();
+    const WaverToken = await ethers.getContractFactory("WaverToken");
+    const token = await WaverToken.deploy();
+    await token.deployed();
+
+    await token.requestTokens(addr1.address, 1000);
+    expect(await token.balanceOf(addr1.address)).to.equal(1000);
+
+    try {
+      await token.requestTokens(addr1.address, 1000);
+    } catch (error) {
+      expect(error.message).to.include(
+        "Lock time has not expired. Please try again later"
+      );
+    }
+  });
 });
