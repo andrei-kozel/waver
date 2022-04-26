@@ -13,9 +13,7 @@ async function main() {
 
   fs.writeFileSync(
     "./config.js",
-    ` export const contractAddress = "${waver.address}"
-      export const ownerAddress = "${waver.signer.address}"
-    `
+    `export const contractAddress = "${waver.address}"\nexport const ownerAddress = "${waver.signer.address}"`
   );
 }
 
