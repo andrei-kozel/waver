@@ -8,7 +8,7 @@ contract WaverToken is ERC20 {
     mapping(address => uint) public lockTime;
 
     constructor() ERC20("Waves", "WVE") {
-        _mint(msg.sender, 1000);
+        _mint(msg.sender, 1000 ether);
     }
 
     function requestTokens(address requestor, uint amount) external {

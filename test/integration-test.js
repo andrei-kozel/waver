@@ -30,8 +30,12 @@ describe("Waver & WVE", async () => {
     await waver.setToken(tokenAddress);
 
     // Request balance
-    await token.requestTokens(addr1.address, 1000000);
-    await token.requestTokens(addr2.address, 1000000);
+    await token.requestTokens(addr1.address, ethers.utils.parseEther("100000"));
+    await token.requestTokens(addr2.address, ethers.utils.parseEther("100000"));
+
+    await token
+      .connect(addr1)
+      .approve(waver.address, ethers.utils.parseEther("1"));
 
     // addr1 and addr2 now have 1000 tokens
 
@@ -43,21 +47,29 @@ describe("Waver & WVE", async () => {
     it("Should have WVE balance", async () => {
       const [owner, addr1, addr2] = await ethers.getSigners();
 
-      let balance = await waver.checkBalance(addr1.address, 100);
+      let balance = await waver.checkBalance(
+        addr1.address,
+        ethers.utils.parseEther("100")
+      );
       expect(balance).to.equal(true);
-      balance = await waver.checkBalance(addr2.address, 100);
+      balance = await waver.checkBalance(
+        addr2.address,
+        ethers.utils.parseEther("100")
+      );
       expect(balance).to.equal(true);
-      balance = await waver.checkBalance(addr1.address, 100000000);
+      balance = await waver.checkBalance(
+        addr1.address,
+        ethers.utils.parseEther("10000000000")
+      );
       expect(balance).to.equal(false);
     });
 
     it("Should pay 1 WVE for 1 like", async () => {
       const [owner, addr1, addr2] = await ethers.getSigners();
-      const balance = await token.balanceOf(addr1.address);
-      console.log(balance);
-
       await waver.connect(addr1).like(owner.address, contentHash1);
-      expect(await token.balanceOf(owner.address)).to.equal(1);
+      expect(await token.balanceOf(owner.address)).to.equal(
+        ethers.utils.parseEther("1001")
+      );
     });
   });
 });

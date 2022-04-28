@@ -84,7 +84,7 @@ contract Waver is Ownable {
         // require(token.balanceOf(msg.sender) >= likePrice, "Not enough tokens");
         Wave storage wave = hashToWave[_hash];
         wave.likes++;
-        token.transfer(_author, likePrice);
+        token.transferFrom(msg.sender, _author, likePrice);
     }
 
     function deposit() external payable {
