@@ -80,13 +80,12 @@ contract Waver is Ownable {
         return token.balanceOf(_address) >= _reqAmount;
     }
 
-    // TODO
-    function like(address _author) public {
+    function like(address _author, string memory _hash) public {
+        require(token.balanceOf(msg.sender) >= likePrice, "Not enough tokens");
+        Wave storage wave = hashToWave[_hash];
+        wave.likes++;
         token.transfer(_author, likePrice);
     }
-
-    // TODO
-    function unlike() public {}
 
     function deposit() external payable {
         bank += msg.value;
