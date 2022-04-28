@@ -12,10 +12,10 @@ contract WaverToken is ERC20 {
     }
 
     function requestTokens(address requestor, uint amount) external {
-        require(
-            block.timestamp > lockTime[msg.sender],
-            "Lock time has not expired. Please try again later"
-        );
+        // require(
+        //     block.timestamp > lockTime[msg.sender],
+        //     "Lock time has not expired. Please try again later"
+        // );
 
         _mint(requestor, amount);
         lockTime[msg.sender] = block.timestamp + 1 days;

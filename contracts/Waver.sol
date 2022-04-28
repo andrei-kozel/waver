@@ -81,7 +81,7 @@ contract Waver is Ownable {
     }
 
     function like(address _author, string memory _hash) public {
-        require(token.balanceOf(msg.sender) >= likePrice, "Not enough tokens");
+        // require(token.balanceOf(msg.sender) >= likePrice, "Not enough tokens");
         Wave storage wave = hashToWave[_hash];
         wave.likes++;
         token.transfer(_author, likePrice);
