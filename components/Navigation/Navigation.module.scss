@@ -1,0 +1,26 @@
+.container {
+  @apply flex justify-center;
+}
+
+.nav {
+  @apply bg-white p-4 rounded-b-3xl w-fit flex justify-evenly items-center px-16 fixed;
+
+  & > .item {
+    @apply cursor-pointer bg-white mx-8;
+    width: 30px;
+    height: 30px;
+
+    & > svg {
+      @apply fill-gray-400 hover:fill-gray-500 transition-all;
+    }
+  }
+
+  & > .active {
+    @apply bg-white rounded-full flex justify-center items-center translate-y-5 scale-150;
+
+    & > svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
