@@ -1,5 +1,6 @@
 import styles from "./Navigation.module.scss";
 import NavigationItem from "./NavigationItem";
+import { useRouter } from "next/router";
 
 import Home from "./icons/home.svg";
 import Info from "./icons/info.svg";
@@ -7,10 +8,7 @@ import Mint from "./icons/mint.svg";
 import Wallet from "./icons/wallet.svg";
 
 const Navigation = () => {
-  const handleActive = (e) => {
-    console.log(e.target);
-    e.target.classList.add(styles.active);
-  };
+  const router = useRouter();
 
   return (
     <div className={styles.container}>
@@ -18,17 +16,17 @@ const Navigation = () => {
         <NavigationItem
           icon={<Home />}
           title="Home"
-          handleActive={handleActive}
+          onClick={() => router.push("/")}
         />
         <NavigationItem
           icon={<Mint />}
           title="Mint"
-          handleActive={handleActive}
+          onClick={() => router.push("/mint")}
         />
         <NavigationItem
           icon={<Info />}
           title="Info"
-          handleActive={handleActive}
+          onClick={() => router.push("/info")}
         />
       </nav>
     </div>

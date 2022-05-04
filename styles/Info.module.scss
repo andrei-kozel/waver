@@ -1,0 +1,14 @@
+.info {
+  @apply bg-slate-200 w-full h-screen pt-20;
+  animation: setbg 0.2s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes setbg {
+  0% {
+    background-color: inherit;
+  }
+  100% {
+    @apply bg-emerald-100;
+  }
+}

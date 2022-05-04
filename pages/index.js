@@ -1,11 +1,9 @@
-import Navigation from "../components/Navigation/Navigation";
+import styles from "../styles/Home.module.scss";
 
 const Home = () => {
   return (
-    <div className="bg-gray-300 w-full h-screen">
-      <div className="container mx-auto ">
-        <Navigation />
-      </div>
+    <div className={styles.home}>
+      <div className="container mx-auto ">Home</div>
     </div>
   );
 };

@@ -3,10 +3,10 @@
 }
 
 .nav {
-  @apply bg-white p-4 rounded-b-3xl w-fit flex justify-evenly items-center px-16 fixed;
+  @apply bg-white p-4 rounded-b-3xl w-fit flex justify-evenly items-center px-16 fixed shadow-md;
 
   & > .item {
-    @apply cursor-pointer flex justify-center items-center flex-col bg-white mx-8;
+    @apply cursor-pointer flex justify-center items-center flex-col bg-white mx-8 relative;
     width: 30px;
     height: 30px;
 
@@ -19,8 +19,20 @@
     }
 
     &:hover {
+      &::before {
+        content: "";
+        @apply bg-white absolute top-0 left-0 right-0 bottom-0;
+        width: 80px;
+        height: 80px;
+        transform: translate(-25px, -15px);
+        border-radius: 100%;
+        animation: scale 0.2s ease-in-out;
+      }
+
       & > .icon svg {
         @apply translate-y-1 fill-gray-500 transition-all ease-in-out duration-200;
+        width: 100%;
+        height: 100%;
       }
 
       & > .title {
@@ -28,6 +40,21 @@
         animation: show 0.2s ease-out;
       }
     }
+  }
+}
+
+.active {
+  & > .icon svg {
+    @apply fill-green-200;
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: translate(-25px, -15px) scale(0);
+  }
+  100% {
+    transform: translate(-25px, -15px) scale(1);
   }
 }
 
