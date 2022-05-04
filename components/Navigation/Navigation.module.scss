@@ -6,21 +6,44 @@
   @apply bg-white p-4 rounded-b-3xl w-fit flex justify-evenly items-center px-16 fixed;
 
   & > .item {
-    @apply cursor-pointer bg-white mx-8;
+    @apply cursor-pointer flex justify-center items-center flex-col bg-white mx-8;
     width: 30px;
     height: 30px;
 
-    & > svg {
-      @apply fill-gray-400 hover:fill-gray-500 transition-all;
+    & > .icon svg {
+      @apply fill-gray-400;
+    }
+
+    & > .title {
+      @apply text-gray-500 text-sm hidden;
+    }
+
+    &:hover {
+      & > .icon svg {
+        @apply translate-y-1 fill-gray-500 transition-all ease-in-out duration-200;
+      }
+
+      & > .title {
+        @apply block translate-y-1 fill-gray-500 transition-all ease-in-out;
+        animation: show 0.2s ease-out;
+      }
     }
   }
+}
 
-  & > .active {
-    @apply bg-white rounded-full flex justify-center items-center translate-y-5 scale-150;
+@keyframes show {
+  0% {
+    display: none;
+    opacity: 0;
+  }
 
-    & > svg {
-      width: 25px;
-      height: 25px;
-    }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
   }
 }
